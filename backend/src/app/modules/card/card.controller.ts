@@ -21,7 +21,11 @@ const createCardIntoDB: RequestHandler = async (req, res) => {
 
 const getCardIntoDB: RequestHandler = async (req, res) => {
   try {
-    const result = await CardService.getCard();
+    const { title } = req.query;
+
+    const searchTitle = typeof title === "string" ? title : undefined;
+
+    const result = await CardService.getCard(searchTitle);
     res.status(200).json({
       success: true,
       message: "Card get successfully",

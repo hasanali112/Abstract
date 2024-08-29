@@ -6,8 +6,14 @@ const createCard = async (payload: TCard) => {
   return result;
 };
 
-const getCard = async () => {
-  const result = await Card.find();
+const getCard = async (title?: string) => {
+  let query: any = {};
+
+  if (title) {
+    query.title = { $regex: title, $options: "i" };
+  }
+
+  const result = await Card.find(query);
   return result;
 };
 

@@ -1,6 +1,10 @@
 import Container from "../Shared/Container";
 
-const HeroSection = () => {
+type TProps = {
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const HeroSection = ({ setSearchValue }: TProps) => {
   return (
     <div className="bg-[#dadbf0] h-[400px]">
       <Container className="flex flex-col justify-center items-center pt-28">
@@ -9,6 +13,7 @@ const HeroSection = () => {
           <input
             type="search"
             placeholder="Search"
+            onBlur={(e) => setSearchValue(e.target.value)}
             className="w-[500px] h-[50px] border border-gray-900 mt-8 rounded-sm px-5 focus:outline-none"
           />
           <button className="absolute top-[45px] right-4">
